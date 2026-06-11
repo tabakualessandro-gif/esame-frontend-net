@@ -13,41 +13,45 @@ async function inizializzaDettaglio() {
         return;
     }
 
-    const item = await fetchDetailFromTMDB(`/${type}/${id}`);
+    const item = await fetchDetailFromTMDB('/' + type + '/' + id);
 
     if (!item) {
         main.innerHTML = '<p class="error-message" style="padding:48px 40px">Impossibile caricare i dettagli. Riprova più tardi.</p>';
         return;
     }
 
-    renderDettaglio(main, item, type);
+    mostraDettaglio(main, item, type);
 }
 
-function renderDettaglio(main, item, type) {
+function mostraDettaglio(main, item, type) {
     const title = item.title || item.name || 'Titolo sconosciuto';
     const date = item.release_date || item.first_air_date;
     const year = date ? date.split('-')[0] : 'N.D.';
     const rating = item.vote_average ? item.vote_average.toFixed(1) : 'N.D.';
     const overview = item.overview || 'Nessuna descrizione disponibile.';
     const tagline = item.tagline || '';
+
     const genres = item.genres ? item.genres.map(g => g.name).join(' · ') : '';
 
     let duration = '';
     if (type === 'movie' && item.runtime) {
-        const h = Math.floor(item.runtime / 60);
-        const m = item.runtime % 60;
-        duration = h > 0 ? `${h}h ${m}min` : `${m}min`;
+        const ore = Math.floor(item.runtime / 60);
+        const minuti = item.runtime % 60;
+        duration = ore > 0 ? `${ore}h ${minuti}min` : `${minuti}min`;
     } else if (type === 'tv' && item.episode_run_time && item.episode_run_time.length > 0) {
         duration = `~${item.episode_run_time[0]} min / episodio`;
     }
 
     const backdropUrl = item.backdrop_path ? `${BACKDROP_BASE}${item.backdrop_path}` : '';
 
-    const posterHtml = item.poster_path
-        ? `<img class="detail-poster" src="${POSTER_DETAIL_BASE}${item.poster_path}" alt="${title}">`
-        : `<div class="detail-poster no-poster">Nessuna immagine</div>`;
+    let posterHtml;
+    if (item.poster_path) {
+        posterHtml = `<img class="detail-poster" src="${POSTER_DETAIL_BASE}${item.poster_path}" alt="${title}">`;
+    } else {
+        posterHtml = `<div class="detail-poster no-poster">Nessuna immagine</div>`;
+    }
 
-    document.title = `${title} — Netflix Clone`;
+    document.title = title + ' — Netflix Clone';
 
     main.innerHTML = `
         ${backdropUrl ? `<div class="detail-backdrop" style="background-image:url('${backdropUrl}')"></div>` : '<div class="detail-backdrop-placeholder"></div>'}

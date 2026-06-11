@@ -3,11 +3,9 @@ async function inizializzaSerie() {
     showLoading('grid-serie-popolari');
     showLoading('grid-serie-top');
 
-    const [onTheAir, popolari, topRated] = await Promise.all([
-        fetchFromTMDB('/tv/on_the_air'),
-        fetchFromTMDB('/tv/popular'),
-        fetchFromTMDB('/tv/top_rated')
-    ]);
+    const onTheAir = await fetchFromTMDB('/tv/on_the_air');
+    const popolari = await fetchFromTMDB('/tv/popular');
+    const topRated = await fetchFromTMDB('/tv/top_rated');
 
     renderGrid('grid-on-the-air', onTheAir);
     renderGrid('grid-serie-popolari', popolari);

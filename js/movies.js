@@ -3,11 +3,9 @@ async function inizializzaFilm() {
     showLoading('grid-popolari');
     showLoading('grid-top-rated');
 
-    const [nowPlaying, popolari, topRated] = await Promise.all([
-        fetchFromTMDB('/movie/now_playing'),
-        fetchFromTMDB('/movie/popular'),
-        fetchFromTMDB('/movie/top_rated')
-    ]);
+    const nowPlaying = await fetchFromTMDB('/movie/now_playing');
+    const popolari = await fetchFromTMDB('/movie/popular');
+    const topRated = await fetchFromTMDB('/movie/top_rated');
 
     renderGrid('grid-now-playing', nowPlaying);
     renderGrid('grid-popolari', popolari);
