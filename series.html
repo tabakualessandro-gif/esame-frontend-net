@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone - Serie TV</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">NETFLIX</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Film</a></li>
+                <li><a href="series.html" class="active">Serie TV</a></li>
+                <li><a href="profile.html">Profilo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- GET dedicata: serie TV attualmente in onda -->
+        <section class="content-section">
+            <h2 class="section-title">In onda ora</h2>
+            <p class="section-subtitle">Serie TV con nuovi episodi in onda nelle ultime due settimane.</p>
+            <div id="grid-on-the-air" class="cards-row"></div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Serie TV popolari</h2>
+            <p class="section-subtitle">Le serie pi&ugrave; seguite in questo momento nel mondo.</p>
+            <div id="grid-serie-popolari" class="cards-grid"></div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Le pi&ugrave; votate di sempre</h2>
+            <p class="section-subtitle">Serie TV con il punteggio medio pi&ugrave; alto su TMDB.</p>
+            <div id="grid-serie-top" class="cards-grid"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 NETFLIX App &mdash; Progetto Esame Corso Frontend
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/series.js"></script>
+</body>
+</html>

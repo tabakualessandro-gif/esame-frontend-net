@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone - Profilo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">NETFLIX</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Film</a></li>
+                <li><a href="series.html">Serie TV</a></li>
+                <li><a href="profile.html" class="active">Profilo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="profile-container">
+
+            <!-- Avatar + nome + link GitHub -->
+            <div class="profile-header">
+                <div class="profile-avatar">A</div>
+                <div class="profile-info">
+                    <h2>Alessandro Tabaku</h2>
+                    <p>Studente &mdash; Corso Frontend</p>
+                    <a
+                        href="https://github.com/tabakualessandro-gif/esame-frontend-net"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="github-link"
+                    >
+                        &#128279; Repository GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Descrizione del progetto -->
+            <section class="profile-project">
+                <h3 class="profile-section-title">Il progetto</h3>
+                <p class="profile-description">
+                    Applicazione web ispirata a Netflix, sviluppata come progetto d'esame per il
+                    corso di Frontend. Consente di navigare film e serie TV in tendenza, al cinema
+                    o in onda, attingendo in tempo reale alle API pubbliche di
+                    <strong>The Movie Database (TMDB)</strong>. Il sito &egrave; strutturato come
+                    applicazione multi-pagina con HTML, CSS vanilla e JavaScript puro, senza
+                    l&rsquo;utilizzo di framework o librerie esterne.
+                </p>
+            </section>
+
+            <!-- Statistiche (decorative) -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Pagine</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">8</span>
+                    <span class="stat-label">Endpoint TMDB</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Framework usati</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 NETFLIX App &mdash; Progetto Esame Corso Frontend
+    </footer>
+
+</body>
+</html>
