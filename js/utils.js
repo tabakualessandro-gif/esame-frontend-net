@@ -19,12 +19,12 @@ function formatYear(item) {
 function createCard(item) {
     const title = getTitle(item);
     const year = formatYear(item);
-    const posterUrl = item.poster_path
-        ? `${BASE_IMG_URL}${item.poster_path}`
-        : 'https://placehold.co/160x240/1f1f1f/666?text=No+Image';
     const rating = item.vote_average ? item.vote_average.toFixed(1) : 'N.D.';
-
     const mediaType = item.media_type || (item.title !== undefined ? 'movie' : 'tv');
+
+    const posterHtml = item.poster_path
+        ? `<img src="${BASE_IMG_URL}${item.poster_path}" alt="${title}" loading="lazy">`
+        : `<div class="no-poster">Nessuna immagine</div>`;
 
     const card = document.createElement('div');
     card.className = 'movie-card';
@@ -33,7 +33,7 @@ function createCard(item) {
     });
     card.innerHTML = `
         <div class="poster-wrapper">
-            <img src="${posterUrl}" alt="${title}" loading="lazy">
+            ${posterHtml}
         </div>
         <div class="card-details">
             <h3 title="${title}">${title}</h3>
@@ -55,12 +55,19 @@ function renderGrid(containerId, items) {
 
     container.innerHTML = '';
 
-    if (!items || items.length === 0) {
+    if (items === null) {
+        container.innerHTML = '<p class="error-message">Errore nel caricamento. Controlla la connessione o la API key e riprova.</p>';
+        return;
+    }
+
+    if (items.length === 0) {
         container.innerHTML = '<p class="error-message">Nessun contenuto disponibile.</p>';
         return;
     }
 
-    items.forEach(item => container.appendChild(createCard(item)));
+    items
+        .map(item => createCard(item))
+        .forEach(card => container.appendChild(card));
 }
 
 /**

@@ -1,5 +1,5 @@
 const BACKDROP_BASE = 'https://image.tmdb.org/t/p/w1280';
-const POSTER_DETAIL_BASE = 'https://image.tmdb.org/t/p/w342';
+const POSTER_DETAIL_BASE = 'https://image.tmdb.org/t/p/w500';
 
 async function inizializzaDettaglio() {
     const params = new URLSearchParams(window.location.search);
@@ -42,9 +42,10 @@ function renderDettaglio(main, item, type) {
     }
 
     const backdropUrl = item.backdrop_path ? `${BACKDROP_BASE}${item.backdrop_path}` : '';
-    const posterUrl = item.poster_path
-        ? `${POSTER_DETAIL_BASE}${item.poster_path}`
-        : 'https://placehold.co/220x330/1f1f1f/666?text=No+Image';
+
+    const posterHtml = item.poster_path
+        ? `<img class="detail-poster" src="${POSTER_DETAIL_BASE}${item.poster_path}" alt="${title}">`
+        : `<div class="detail-poster no-poster">Nessuna immagine</div>`;
 
     document.title = `${title} — Netflix Clone`;
 
@@ -53,7 +54,7 @@ function renderDettaglio(main, item, type) {
         <div class="detail-content">
             <a href="javascript:history.back()" class="back-btn">&#8592; Torna indietro</a>
             <div class="detail-body">
-                <img class="detail-poster" src="${posterUrl}" alt="${title}">
+                ${posterHtml}
                 <div class="detail-info">
                     <h1 class="detail-title">${title}</h1>
                     ${tagline ? `<p class="detail-tagline">${tagline}</p>` : ''}

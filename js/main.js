@@ -3,8 +3,8 @@ async function inizializzaHome() {
     showLoading('grid-trending-serie');
 
     const [trendingFilm, trendingSerie] = await Promise.all([
-        fetchFromTMDB('/trending/movie/week'),
-        fetchFromTMDB('/trending/tv/week')
+        fetchFromTMDB('/trending/movie/day'),
+        fetchFromTMDB('/trending/tv/day')
     ]);
 
     renderGrid('grid-trending-film', trendingFilm);

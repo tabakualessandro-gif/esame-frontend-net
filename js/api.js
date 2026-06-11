@@ -30,7 +30,7 @@ async function fetchFromTMDB(endpoint) {
         return data.results;
     } catch (error) {
         console.error(`Errore nel fetch dell'endpoint ${endpoint}:`, error);
-        return [];
+        return null;
     }
 }
 
